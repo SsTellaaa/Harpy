@@ -38,26 +38,27 @@ let fileName = directory & fmt"/main.{corresponds}"
 
 var file: File
 
-if corresponds == "java":
-    if open(file, fileName, fmWrite):
-        echo "File created successfully"
-        write(file, fmt"{java}")
-        close(file)
+case corresponds:
+    of "java":
+        if open(file, fileName, fmWrite):
+            echo "File created successfully"
+            write(file, fmt"{java}")
+            close(file)
+        else:
+            echo "Failed to create file"
+    of "py":
+        if open(file, fileName, fmWrite):
+            echo "File created successfully"
+            write(file, fmt"{python}")
+            close(file)
     else:
-        echo "Failed to create file"
-elif corresponds == "py":
-    if open(file, fileName, fmWrite):
-        echo "File created successfully"
-        write(file, fmt"{python}")
-        close(file)
-    else:
-        echo "Failed to create file"
-elif corresponds == "kt":
-    if open(file, fileName, fmWrite):
+            echo "Failed to create file"
+    of "kt":
+        if open(file, fileName, fmWrite):
         echo "File created successfully"
         write(file, fmt"{kotlin}")
         close(file)
     else:
         echo "Failed to create file"
-else:
-    echo "You made a typo somewhere, whoopsies"
+    else:
+        echo "You made a typo somewhere. Whoopsies."
